@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIKED DATA LOOKUP FROM FACE📘</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000;
+        color: #00d4ff;
+        font-family: "Courier New", monospace;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      header {
+        margin: 40px 0px;
+        text-align: center;
+        padding: 1rem;
+        font-size: 2.6rem;
+        font-weight: bold;
+        text-shadow: 0 0 15px #00d4ff;
+        color: #40ff46;
+      }
+
+      .card {
+        background: rgba(0, 0, 0, 0.85);
+        border-radius: 12px;
+        padding: 1.5rem;
+        width: 90%;
+        max-width: 600px;
+        margin: 1.5rem auto;
+        box-shadow: 0 0 25px #00d4ff;
+        text-align: center;
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid #00d4ff;
+        border-radius: 8px;
+        background: #000;
+        color: #000;
+        font-size: 1.3rem;
+        text-align: center;
+        background-color: aliceblue;
+      }
+
+      button {
+        width: 100%;
+        padding: 1rem;
+        background: #00d4ff;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #111;
+        color: #00d4ff;
+        border: 2px solid #00d4ff;
+        transform: scale(1.01);
+        box-shadow: 0 0 15px #00d4ff;
+      }
+
+      #result {
+        margin-top: 1rem;
+        white-space: pre-wrap;
+        background: #000;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #00d4ff;
+        font-size: 1.4rem;
+        max-height: 300px;
+        overflow-y: auto;
+        text-align: left;
+        display: none;
+        color: aliceblue; 
+      }
+
+      .socials-container {
+        text-align: center;
+        margin: 1.2rem auto;
+        padding: 2rem;
+      }
+
+      .socials-container p {
+        margin-bottom: 0.6rem;
+      }
+
+      .socials {
+        margin-top: 1.3rem;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .socials a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #40ff46;
+        text-decoration: none;
+        font-size: 1.3rem;
+        transition: 0.3s;
+      }
+
+      .socials a img {
+        width: 22px;
+        height: 22px;
+        filter: drop-shadow(0 0 5px #00d4ff);
+      }
+
+      .socials a:hover {
+        color: #ff4081;
+        text-shadow: 0 0 10px #ff4081;
+        transform: scale(1.1);
+      }
+
+      footer {
+        background: rgba(0, 0, 0, 0.85);
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.2rem;
+        color: #00d4ff;
+        margin-top: auto;
+        border-top: 1px solid #00d4ff;
+        position: sticky;
+        bottom: 0;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 📱 موبايل */
+      @media (max-width: 600px) {
+        header {
+          font-size: 1.6rem;
+          padding: 0.8rem;
+        }
+        .card {
+          width: 90%;
+          padding: 1rem;
+        }
+        input,
+        button {
+          font-size: 1rem;
+          padding: 0.8rem;
+        }
+        footer {
+          font-size: 0.85rem;
+          padding: 0.7rem;
+        }
+      }
+
+      /* 💻 لابتوب */
+      @media (min-width: 1024px) {
+        .card {
+          max-width: 1000px; /* أكبر على الشاشات الواسعة */
+          padding: 2rem;
+        }
+        input,
+        button {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>NUMBER LOOKUP BY AHMED ELTAMIMY</header>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="card">
+      <input id="numberInput" type="text" placeholder="ENTER NUMBER" />
+      <button onclick="getInfo()">🔎 Scan</button>
+      <div id="result"></div>
+    </div>
+
+    <div class="socials-container">
+      <p>
+        .Contact us on social media platforms for more free and paid services
+        <p>تابعني على السوشيال 👇</p>
+      </p>
+      <div class="socials">
+        <a href="https://www.instagram.com/ahmedmahmoud_ami0" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" />
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/ahmedmahmoud.AMI0" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" />
+          Facebook
+        </a>
+        <a href="https://t.me/CodmannZero" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" />
+          Telegram
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 All rights reserved by Eng-Ahmed Mahmoud</p>
+    </footer>
+
+    <script>
+      // Matrix Effect
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+      const letters = "01";
+      const fontSize = 14;
+      let columns;
+      let drops = [];
+
+      function resizeCanvas() {
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        columns = Math.floor(canvas.width / fontSize);
+        drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      function draw() {
+        ctx.fillStyle = "rgba(0,0,0,0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00d4ff";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters.charAt(
+            Math.floor(Math.random() * letters.length)
+          );
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 35);
+
+      // Fetch API
+      async function getInfo() {
+        const nu = document.getElementById("numberInput").value.trim();
+        const resultBox = document.getElementById("result");
+
+        if (!nu) {
+          resultBox.style.display = "none";
+          resultBox.innerHTML = "⚠️ اكتب رقم صحيح!";
+          return;
+        }
+        try {
+          const res = await fetch(`https://ebnelnegm.com/api.php?num=${nu}`);
+          const data = await res.json();
+          resultBox.style.display = "block";
+          resultBox.innerHTML = JSON.stringify(data, null, 2);
+        } catch (e) {
+          resultBox.style.display = "block";
+          resultBox.innerHTML = "❌ خطأ: لم يتم جلب البيانات.";
+        }
+      }
+    </script>
+  </body>
+</html>
