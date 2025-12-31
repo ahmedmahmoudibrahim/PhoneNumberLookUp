@@ -227,7 +227,12 @@
 
         const res = await fetch(`https://ebnelnegm.com/XX/index.php?num=${encodeURIComponent(number)}`);
         const text = await res.text();
-        const data = JSON.parse(text);
+        const data = JSON.parse(text); 
+        if (data.http === 401) {
+          resultDiv.innerHTML =
+            "🚫 تم إيقاف خدمة البحث من السيرفر.<br>هذه المشكلة من المصدر وليس من الموقع.";
+          return;
+        }
 
         if (Object.keys(data).length) {
           result.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
@@ -244,3 +249,4 @@
 
 </body>
 </html>
+
