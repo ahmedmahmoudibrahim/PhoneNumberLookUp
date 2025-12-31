@@ -3,36 +3,32 @@
   <head>
     <meta charset="UTF-8" />
    
-<title>See your Name by Searching with Phone Number – ابحث برقم الهاتف واعرف الاسم</title>
-
-<meta name="description" content="Search by phone number to find the registered name in the database. خدمة مجانية للبحث عن الأسماء المرتبطة بأرقام الهواتف.">
-<meta name="keywords" content="
-  PhoneNumberLookUp,
-  phone number lookup,
-  search by phone number,
-  find name by number,
-  phone number lookup,
-  reverse phone search,
-  who called me,
-  telephone directory,
-  laked phone numbers,
-  البحث برقم الهاتف,
-  معرفة اسم صاحب الرقم,
-  دليل الهاتف,
-  البحث عن رقم جوال,
-  قاعدة بيانات أرقام,
-  من المتصل,
-  بحث عن أرقام الهواتف
-">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta http-equiv="Content-Language" content="ar">
-
-<link rel="ahmedmahmoudibrahim" href="https://github.com/ahmedmahmoudibrahim/PhoneNumberLookUp/">
-
-<meta name="robots" content="index, follow">
-    
+            <title>See your Name by Searching with Phone Number – ابحث برقم الهاتف واعرف الاسم</title>
+            <meta name="description" content="Search by phone number to find the registered name in the database. خدمة مجانية للبحث عن الأسماء المرتبطة بأرقام الهواتف.">
+            <meta name="keywords" content="
+              PhoneNumberLookUp,
+              phone number lookup,
+              search by phone number,
+              find name by number,
+              phone number lookup,
+              reverse phone search,
+              who called me,
+              telephone directory,
+              laked phone numbers,
+              البحث برقم الهاتف,
+              معرفة اسم صاحب الرقم,
+              دليل الهاتف,
+              البحث عن رقم جوال,
+              قاعدة بيانات أرقام,
+              من المتصل,
+              بحث عن أرقام الهواتف
+            ">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="Content-Language" content="ar">
+            <link rel="canonical" href="https://github.com/ahmedmahmoudibrahim/PhoneNumberLookUp/">
+            <meta name="robots" content="index, follow">
+                
   
     <style>
       * {
@@ -259,7 +255,7 @@
     </div>
 
     <footer>
-      <p>© 2025 All rights reserved by Eng-Ahmed Mahmoud</p>
+      <p>© 2025-2026 All rights reserved by Eng-Ahmed Mahmoud Eltamimy </p>
     </footer>
 
     <script>
@@ -292,11 +288,11 @@
     async function getInfo() {
       const nu = document.getElementById("numberInput").value.trim();
       if(!nu) {
-        document.getElementById("result").innerHTML = "⚠️ اكتب رقم صحيح! should strat with 011 , 012 , 015 ,010 ";
+        document.getElementById("result").innerHTML = "⚠️ اكتب رقم صحيح يجب ان يبدا بــ 011 , 012 , 015 ,010 ";
         return;
       }
       try {
-        const res = await fetch(`https://ebnelnegm.com/XX/index.php?num=${nu}`);
+        const res = await fetch(`https://ebnelnegm.com/XX/index.php?num=${encodeURIComponent(nu)}`);
         const data = await res.json();
         document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
         
@@ -306,10 +302,10 @@
         document.getElementById("result").innerHTML = "❌ خطأ: لم يتم جلب البيانات.";
       }
     }
-  
     </script>
   </body>
 </html>
+
 
 
 
