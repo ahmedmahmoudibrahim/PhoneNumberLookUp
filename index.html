@@ -2,8 +2,38 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LIKED DATA LOOKUP FROM FACE📘</title>
+   
+<title>See your Name by Searching with Phone Number – ابحث برقم الهاتف واعرف الاسم</title>
+
+<meta name="description" content="Search by phone number to find the registered name in the database. خدمة مجانية للبحث عن الأسماء المرتبطة بأرقام الهواتف.">
+<meta name="keywords" content="
+  PhoneNumberLookUp,
+  phone number lookup,
+  search by phone number,
+  find name by number,
+  phone number lookup,
+  reverse phone search,
+  who called me,
+  telephone directory,
+  laked phone numbers,
+  البحث برقم الهاتف,
+  معرفة اسم صاحب الرقم,
+  دليل الهاتف,
+  البحث عن رقم جوال,
+  قاعدة بيانات أرقام,
+  من المتصل,
+  بحث عن أرقام الهواتف
+">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="Content-Language" content="ar">
+
+<link rel="ahmedmahmoudibrahim" href="https://github.com/ahmedmahmoudibrahim/PhoneNumberLookUp/">
+
+<meta name="robots" content="index, follow">
+    
+  
     <style>
       * {
         box-sizing: border-box;
@@ -233,67 +263,53 @@
     </footer>
 
     <script>
-      // Matrix Effect
-      const canvas = document.getElementById("matrix");
-      const ctx = canvas.getContext("2d");
-      const letters = "01";
-      const fontSize = 14;
-      let columns;
-      let drops = [];
-
-      function resizeCanvas() {
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
-        columns = Math.floor(canvas.width / fontSize);
-        drops = [];
-        for (let x = 0; x < columns; x++) drops[x] = 1;
+  
+    // Matrix Effect
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+    function draw() {
+      ctx.fillStyle = "rgba(0,0,0,0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0f0";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
       }
+    }
+    setInterval(draw, 35);
 
-      window.addEventListener("resize", resizeCanvas);
-      resizeCanvas();
-
-      function draw() {
-        ctx.fillStyle = "rgba(0,0,0,0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#00d4ff";
-        ctx.font = fontSize + "px monospace";
-
-        for (let i = 0; i < drops.length; i++) {
-          const text = letters.charAt(
-            Math.floor(Math.random() * letters.length)
-          );
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-          drops[i]++;
-        }
+    // Fetch API
+    async function getInfo() {
+      const nu = document.getElementById("numberInput").value.trim();
+      if(!nu) {
+        document.getElementById("result").innerHTML = "⚠️ اكتب رقم صحيح! should strat with 011 , 012 , 015 ,010 ";
+        return;
       }
-      setInterval(draw, 35);
-
-      // Fetch API
-      async function getInfo() {
-        const nu = document.getElementById("numberInput").value.trim();
-        const resultBox = document.getElementById("result");
-
-        if (!nu) {
-          resultBox.style.display = "none";
-          resultBox.innerHTML = "⚠️ اكتب رقم صحيح!";
-          return;
-        }
-        try {
-          const res = await fetch(`https://ebnelnegm.com/HH/index.php?num=${nu}`);
-          const data = await res.json();
-          resultBox.style.display = "block";
-          resultBox.innerHTML = JSON.stringify(data, null, 2);
-        } catch (e) {
-          resultBox.style.display = "block";
-          resultBox.innerHTML = "❌ خطأ: لم يتم جلب البيانات.";
-        }
+      try {
+        const res = await fetch(`https://ebnelnegm.com/XX/index.php?num=${nu}`);
+        const data = await res.json();
+        document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
+        
+        // مسح الرقم من صندوق الإدخال بعد نجاح البحث
+        document.getElementById("numberInput").value = "";
+      } catch (e) {
+        document.getElementById("result").innerHTML = "❌ خطأ: لم يتم جلب البيانات.";
       }
+    }
+  
     </script>
   </body>
 </html>
+
 
 
